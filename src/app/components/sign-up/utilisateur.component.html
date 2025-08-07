@@ -1,0 +1,58 @@
+<!-- Créer une page pour enregistrer un utilisateur (sign up page) :
+-nom
+-prenom
+-nom utilisateur
+-mot de passe -->
+
+<div id="full-cover-background" class="flex h-full bg-gray-100 items-center justify-center">
+    <div id="centered-block" class="bg-white p-6 rounded-xl shadow-md">
+        <form [formGroup]="utilisateurForm" (ngSubmit)="onSubmit()">
+            <h2 class="text-center"></h2>
+            <div id="nom-container">
+                <mat-form-field>
+                    <mat-label>Nom</mat-label>
+                    <input matInput formControlName="nom" type="text" placeholder="Nom" />
+                </mat-form-field>
+            </div>
+            <div id="prenom-container">
+                <mat-form-field>
+                    <mat-label>Prénom</mat-label>
+                    <input matInput formControlName="prenom" type="text" placeholder="Prénom" />
+                </mat-form-field>
+            </div>
+            <div id="username-container">
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="email" placeholder="Email" />
+                </mat-form-field>
+            </div>
+            <div id="gender-container">
+                <mat-form-field>
+                    <mat-label>Genre</mat-label>
+                    <mat-select>
+                        @for (genre of listGenre; track genre.value) {
+                            <mat-option [value]="genre.value"> {{genre.viewValue}}</mat-option>
+                        }
+                        
+                    </mat-select>
+                    <!-- <mat-select formControlName="genre">
+                        <mat-option value="Homme">Homme</mat-option>
+                        <mat-option value="Femme">Femme</mat-option>
+                        <mat-option value="Autre">Autre</mat-option>
+                    </mat-select> -->
+                </mat-form-field>
+                        
+                    
+            </div>
+            <div id="password-container">
+                <mat-form-field>
+                    <mat-label>Mot de passe</mat-label>
+                    <input matInput formControlName="motdepasse" type="password" placeholder="Mot de passe" />
+                </mat-form-field>
+            </div>
+            <button mat-flat-button type="submit" class="w-full">
+                S'inscrire
+            </button>
+        </form>
+    </div>
+</div>

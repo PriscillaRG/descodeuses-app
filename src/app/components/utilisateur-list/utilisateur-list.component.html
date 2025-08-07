@@ -1,0 +1,8 @@
+<mat-card>
+  <h2>Liste des utilisateurs</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let user of utilisateurs">
+      {{ user.prenom }} {{ user.nom }} ({{ user.sexe }})
+    </mat-list-item>
+  </mat-list>
+</mat-card>

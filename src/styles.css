@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+
+/* Importer tailwind dnas le fichier style.css qui va être injecté dans toutes les pages*/
+@Layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/*Code injecté automatiquement après installation material*/
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
