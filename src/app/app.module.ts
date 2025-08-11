@@ -19,7 +19,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import {MatCardModule} from '@angular/material/card';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { UtilisateurListComponent } from './components/utilisateur-list/utilisateur-list.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -29,6 +29,7 @@ import { TodoTableComponent } from './components/todo-table/todo-table.component
 import { MatTableModule } from '@angular/material/table';
 import { DashboardComponent} from './components/dashboard/dashboard.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { authInterceptor } from './auth.interceptor';
 
 
 @NgModule({
@@ -66,7 +67,11 @@ import {MatGridListModule} from '@angular/material/grid-list';
     ],
 
   providers: [
-    provideHttpClient(),
+    provideHttpClient(
+      withInterceptors([
+        authInterceptor 
+      ])
+    ),
     
     //injecter in-memory-data.service.ts
     //comme il est @Injectable

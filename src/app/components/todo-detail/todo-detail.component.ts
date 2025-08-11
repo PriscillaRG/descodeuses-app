@@ -62,7 +62,7 @@ export class TodoDetailComponent implements OnInit {
     //tester si formulaire valide
     if(this.formGroup.valid) {
       //faire appel au update du service CRUD
-      this.todoService.UpdateTodo(this.formGroup.value).subscribe(data=>
+      this.todoService.updateTodo(this.formGroup.value).subscribe(data=>
       {
         //afficher message popup
         this.snackbar.open('Updated!', '', {duration:1000});

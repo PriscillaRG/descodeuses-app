@@ -68,7 +68,7 @@ export class TodoListComponent implements OnInit {
     todo.completed = event.checked;
 
     //mettre à jour dans l'api
-    this.todoService.UpdateTodo(todo).subscribe((data:any) => {
+    this.todoService.updateTodo(todo).subscribe((data:any) => {
       console.log(data);
       this.snackBar.open('Updated !', '', {duration:1000});
     });

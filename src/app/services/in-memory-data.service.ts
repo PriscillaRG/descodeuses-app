@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
 import { Utilisateur } from '../models/utilisateur.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable({providedIn: 'root'})
 
 // API virtuelle mock 
 // 'InMemory' cad donnees initialise avec chaque demarrage
@@ -13,6 +12,8 @@ import { Utilisateur } from '../models/utilisateur.model';
 //npm i angular-in-memory-web-api@0.19.0
 //ng g service in-memory-data
 export class InMemoryDataService implements InMemoryDataService {
+
+  
 
   constructor() { }
   
@@ -38,5 +39,7 @@ export class InMemoryDataService implements InMemoryDataService {
     ];
 
     return { todos, utilisateurs }; // un lien endpoint api/todos 
-  }
+
+    
 }
+  }

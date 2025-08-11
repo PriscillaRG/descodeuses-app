@@ -13,10 +13,11 @@ import { TodoService } from '../../services/todo.service';
 
 export class DashboardComponent implements OnInit {
   todos: Todo[] = [];
-  todoService: any;
 
 
+  constructor(private todoService : TodoService) {
 
+  }
 
 
  ngOnInit(): void {

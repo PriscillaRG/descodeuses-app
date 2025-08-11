@@ -1,55 +1,54 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Todo } from '../models/todo.model';
+import { environment } from '../../environments/environments';
 
-//commande pour créer le fichier 
-// ng g service todo
-// Le service c'est le lien entre le front et le back 
-//il fait les operations CRUD (Create, Read, Update, Delete) (Plus value en entretien) 
-// il communique avec le back via HttpClient
-// il est decoré par le decorateur Injectable
-// 'providedIn: root' signifie que le service est disponible dans toute l'application
-// il est injecté dans le constructeur du composant qui en a besoin
+//commande pour creer le fichier:
+//ng g service todo
 
+//Le service fait le lien entre le front et le back
+
+//Il fait les operations CRUD: Create, Read, Update, Delete
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
 
-  private apiUrl = 'http://localhost:8080/api/action';
+  private apiURL = environment.apiUrl + '/api/action';
 
-// HttpClient Pour communiquer avec le API/BackEnd
+  //HttpClient pour communiquer avec le API/Backend
   constructor(private http: HttpClient) { }
 
-  //CRUD 
-  //Create 
-  //Todo c'est le type de retour de l'appel HTTP
-addTodo (item : Todo) {
-  return this.http.post<Todo>(this.apiUrl, item )
+  //C R U D 
+
+  //C : Create
+  addTodo(item : Todo) {
+    //<Todo> : type de retour de l'appel HTTP
+    return this.http.post<Todo>(this.apiURL, item);
+  }
+
+  //R : Read
+  //Fetch all (toute lia liste)
+  getTodos() {
+    //HTTP GET sans 2eme parametre parce que il y a pas de body
+    return this.http.get<Todo[]>(this.apiURL);
+  }
+
+  //R : Read
+  //Fetch one item de todo par son Id
+  getTodo(id : number) {
+    return this.http.get<Todo>(this.apiURL +'/'+ id);
+  }
+
+  //U : Update
+  updateTodo(item : Todo) {
+    console.log(item);
+    return this.http.put<Todo>(this.apiURL +'/'+ item.id, item);
+  }
+
+  //D : Delete
+  deleteTodo(id : number) {
+    return this.http.delete(this.apiURL +'/'+ id);
+  }
 
 }
-//Read  
-//Fetch liste 
-getTodos() {
-//HTTP GET sans éeme parametre parce qu'il n'y a pas de body 
-  return this.http.get<Todo[]>(this.apiUrl);
-
-}
-//Fetch un item de Todo
-getTodo (id : number) {
-  return this.http.get<Todo>(this.apiUrl +'/'+ id);
-
-}
-
-UpdateTodo (item: Todo) {
-  return this.http.put<Todo>(this.apiUrl + '/' + item.id, item);
-
-}
-
-deleteTodo (id : number) {
-return this.http.delete<Todo>(this.apiUrl + '/' + id);
-
-}
-
-}
-
